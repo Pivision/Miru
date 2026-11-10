@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "types": ["node", "@cloudflare/workers-types", "react", "react-dom", "vite/client"],
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    // 这两条别名与 vite.config.ts 的 resolve.alias 成对：tsconfig 管类型检查，
+    // vite 管打包。两者缺一都会让 components.json 里的 shadcn 生成物报错或构建失败。
+    // `@/*` 是 shadcn 的登记（只指向 src/client）；`@shared/*` 是跨层引用的短路径，
+    // 让 client / server 指向 shared 的 import 一眼能看出跨了层。
+    "paths": {
+      "@/*": ["./src/client/*"],
+      "@shared/*": ["./src/shared/*"]
+    }
+  },
+  // 构建配置也要进类型检查：vite.config.ts 是手写别名与插件装配的地方，出错时报错点必须在 tsc 里看得见。
+  "include": ["src", "vite.config.ts"]
+}

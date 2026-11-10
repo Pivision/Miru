@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f7f4ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#10130f" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>下一幕 · Miru</title>
+    <meta name="description" content="记录在看、看过与想看的番剧，写下每一部的想法。" />
+    <!--
+      防首屏闪白：必须在第一次绘制前把 dark 类挂上，所以这个脚本同步加载、
+      既不是 module 也不带 defer。它是 public/ 下的静态文件，不是内联脚本，
+      所以 CSP 的 script-src 只需要 'self'。
+    -->
+    <script src="/theme-boot.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/client/main.tsx"></script>
+  </body>
+</html>

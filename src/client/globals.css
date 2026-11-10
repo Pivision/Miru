@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+/* Tailwind v4 不读 tailwind.config.js，主题全写在这里。@custom-variant dark 等价于 v3 的 darkMode: ['class', '.dark']，与 lib/hooks/theme.ts 挂类的方式一致。 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* @theme inline 里的值必须引用变量而非字面量：写死会在构建期固化颜色，:root / .dark 切换时深色模式失效。 */
+@theme inline {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --container-content: 1280px;
+
+  /* 字号刻度：v3 内置档只缺 11px 这一档，而站点用得很重（角标、表单提示、评分刻度），所以只补这一档。故意不写成「尺寸 + line-height」成对形式：那会额外生成行高覆盖调用处的 leading-*，只给尺寸才与 v3 的 text-[11px] 等价。 */
+  --text-2xs: 11px;
+}
+
+@layer base {
+  :root {
+    --background: 45 30% 96%;
+    --foreground: 150 8% 13%;
+    --card: 45 42% 98%;
+    --card-foreground: 150 8% 13%;
+    --popover: 45 42% 98%;
+    --popover-foreground: 150 8% 13%;
+    --primary: 168 44% 33%;
+    --primary-foreground: 45 40% 98%;
+    --secondary: 45 20% 92%;
+      --muted: 45 18% 92%;
+    --muted-foreground: 150 5% 42%;
+    --accent: 168 30% 92%;
+    --accent-foreground: 168 44% 24%;
+    --destructive: 6 62% 52%;
+    --destructive-foreground: 45 40% 98%;
+    --border: 45 14% 86%;
+    --input: 45 14% 86%;
+    --ring: 168 44% 33%;
+    --radius: 0.9rem;
+    color-scheme: light;
+  }
+
+  .dark {
+    --background: 150 8% 8%;
+    --foreground: 45 15% 92%;
+    --card: 150 7% 11%;
+    --card-foreground: 45 15% 92%;
+    --popover: 150 7% 11%;
+    --popover-foreground: 45 15% 92%;
+    --primary: 168 40% 55%;
+    --primary-foreground: 160 30% 8%;
+    --secondary: 150 6% 17%;
+      --muted: 150 6% 16%;
+    --muted-foreground: 150 4% 62%;
+    --accent: 168 22% 20%;
+    --accent-foreground: 45 15% 92%;
+    --destructive: 6 55% 58%;
+    --destructive-foreground: 160 30% 8%;
+    --border: 150 6% 20%;
+    --input: 150 6% 20%;
+    --ring: 168 40% 55%;
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  /* v3 预检里的 button{cursor:pointer} 在 v4 被删，补回来；禁用态的 not-allowed 由别处覆盖，所以排除 :disabled。 */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  /* 滚动条占位必须挂文档根元素（本站靠 html 自身滚动，挂内层容器不生效）：不预留时书库页与发现页之间正文横向跳 10px。 */
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+    background-image: radial-gradient(hsl(var(--foreground) / 0.035) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  main,
+  aside,
+  header,
+  footer,
+  nav {
+    position: relative;
+    z-index: 1;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--foreground) / 0.16);
+    border-radius: 999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}

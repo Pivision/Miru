@@ -1,0 +1,47 @@
+# 只做验证，不部署：部署由 Cloudflare Workers Builds 在 push 到 main 时自动执行。
+# 这里的重点是与部署流水线互补的那一环——端到端断言。没有它，前面的静态检查全绿也可能
+# 掩盖「接口行为改了但没人发现」，例如上游状态码分类、进度钳制、邀请码退款这类逻辑。
+name: Verify
+
+on:
+  pull_request:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run check:layers
+      - run: npm run check:schema
+      - run: npm run build
+
+      # harness 用内存 D1 + 内置假上游，不联网也不需要 wrangler 登录。
+      # 必须等 8787 真的能应答再跑断言：serve.mjs 起监听是异步的，
+      # 直接跑 test:e2e 会拿到 ECONNREFUSED，看起来像断言失败。
+      - name: 端到端验收
+        run: |
+          npm run harness > harness.log 2>&1 &
+          for _ in $(seq 1 60); do
+            if curl -sf -o /dev/null http://127.0.0.1:8787/; then
+              break
+            fi
+            sleep 1
+          done
+          if ! curl -sf -o /dev/null http://127.0.0.1:8787/; then
+            echo "harness 没起来，日志如下："
+            cat harness.log
+            exit 1
+          fi
+          npm run test:e2e
+      - name: 失败时附上 harness 日志
+        if: failure()
+        run: cat harness.log

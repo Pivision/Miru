@@ -1,0 +1,24 @@
+# 本地开发用的变量（复制成 .dev.vars 后填写；.dev.vars 不进 git）
+#
+# 读取方：`npm run dev` 起 vite dev 时，@cloudflare/vite-plugin 会经
+# wrangler 的 getVarsForDev 把这份文件注入 Worker 的 vars，
+# 优先级是 wrangler.jsonc 的 vars < 本文件 < .env / process.env。
+#
+# 部署到线上不要用这个文件，用 `wrangler secret put` 或 wrangler.jsonc 的 vars。
+
+# 会话签名密钥，一串 32 字符以上的随机值；生产必填（线上漏配时站点会显示配置提示页）。
+# 生成：node -e "console.log(crypto.randomUUID().replace(/-/g,''))"
+BETTER_AUTH_SECRET=
+
+# 站点地址不用配：Worker 从请求的 host 头推导 baseURL 与 trustedOrigins，
+# 换域名、换 workers.dev 子域都不用改。
+
+# Bangumi 数据源。接口固定走官方 api.bgm.tv，只有图片域可换镜像：
+#   BGM_IMG_BASE  图片镜像域（如 https://bgmimg.example.com），只改写图片 URL 的主机名
+# 不填则图片也走官方。线上请配在 Cloudflare 后台
+# Workers → miru → Settings → Variables and Secrets，不要写进 wrangler.jsonc 的 vars
+# （deploy 会覆盖后台手改的值）。
+# BGM_IMG_BASE=https://bgmimg.example.com
+
+# 请求 Bangumi 时带的 User-Agent。
+# BGM_UA=Miru/0.1 (+https://github.com/)

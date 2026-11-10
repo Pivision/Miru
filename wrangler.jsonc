@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "miru",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "run_worker_first": ["/*", "!/assets/*", "!/theme-boot.js", "!/favicon.svg"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "miru_d1",
+    }
+  ],
+  "vars": {
+    // Bangumi 图片镜像：接口固定走官方 api.bgm.tv，不再有接口镜像。
+    // 值请配在 Cloudflare 后台 Workers → miru → Settings → Variables and Secrets，
+    // "BGM_IMG_BASE": "https://bgmimg.example.com"
+  },
+  "observability": { "enabled": true }
+}
