@@ -32,6 +32,8 @@ function build(env: Env) {
   const db = getDb(env);
   return betterAuth({
     appName: 'Miru',
+    // 配了就用配置值固定；没配传 undefined，退回由请求 host 推导（不含任何写死的域名，仓库可直接开源）。
+    baseURL: env.BETTER_AUTH_URL || undefined,
     basePath: `${API_PREFIX}/auth`,
     secret: resolveSecret(env),
     database: drizzleAdapter(db, {

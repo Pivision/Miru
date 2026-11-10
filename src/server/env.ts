@@ -9,6 +9,8 @@ export interface Env {
   /** Bangumi 图片镜像域。不配则用上游原始地址。 */
   BGM_IMG_BASE?: string;
   BETTER_AUTH_SECRET?: string;
+  /** 站点对外地址。不配则由请求 host 推导，行为与原来一致。 */
+  BETTER_AUTH_URL?: string;
 }
 
 interface AppVars {

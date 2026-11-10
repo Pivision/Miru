@@ -33,10 +33,12 @@ npm run dev
 | 变量 | 必填 | 说明 |
 | --- | --- | --- |
 | `DB` | 是 | D1 绑定，`wrangler.jsonc` 已配置；不写 ID 即由 Cloudflare 自动创建 |
-| `ASSETS` | 是 | 静态产物绑定，由 `wrangler.jsonc` 的 `assets.binding` 提供 |
 | `BETTER_AUTH_SECRET` | 生产必填 | 会话签名密钥；漏配时站点显示配置提示页 |
+| `BETTER_AUTH_URL` | 否 | 站点对外地址，如 `https://miru.example.com`；不配则由请求 host 推导 |
 | `BGM_IMG_BASE` | 否 | Bangumi 图片镜像域，如 `https://bgmimg.example.com` |
 | `BGM_UA` | 否 | 请求 Bangumi 时带的 User-Agent |
+
+除 `DB`、`ASSETS` 两个绑定外，其余变量都配在 Cloudflare 后台的 **Settings → Variables and Secrets**。`wrangler.jsonc` 已开启 `keep_vars`，后台配好的变量重新部署时不会被清掉。
 
 ## 许可证
 
