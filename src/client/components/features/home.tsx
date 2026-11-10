@@ -75,10 +75,10 @@ export function HeroEmptyHint() {
 export function HeroSpotlight({ spotlight, className = '' }: { spotlight: Entry | null; className?: string }) {
   if (!spotlight) {
     return (
-      <div className={cn('grid aspect-[4/3] w-full place-items-center rounded-2xl border border-dashed border-border p-4 text-center lg:aspect-auto lg:h-full', className)}>
-        <div>
+      <div className={cn('aspect-[5/7] w-full rounded-2xl border border-dashed border-border p-4 text-center', className)}>
+        <div className="flex h-full w-full flex-col items-center justify-center gap-2">
           <p className="text-xs text-muted-foreground">还没有在看的番</p>
-          <Button asChild size="sm" variant="outline" className="mt-2">
+          <Button asChild size="sm" variant="outline">
             <Link to="/discover">去发现挑一部</Link>
           </Button>
         </div>
