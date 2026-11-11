@@ -25,7 +25,7 @@ export function Cover({
     return (
       <div className={cn('relative', rounded, className)}>
         <div
-          className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/15 via-secondary to-muted text-lg font-semibold text-primary/60"
+          className="absolute inset-0 flex items-center justify-center bg-muted text-lg font-semibold text-primary/60"
           aria-hidden
         >
           {alt.slice(0, 1)}

@@ -57,8 +57,7 @@ export default function IndexRoute() {
 
         return (
           <div className="space-y-8">
-            <section className="relative overflow-hidden rounded-3xl border border-border/70 bg-gradient-to-br from-card via-card to-primary/[0.06] p-4 shadow-xs sm:p-5">
-              <div className="pointer-events-none absolute -right-16 -top-20 size-56 rounded-full bg-primary/10 blur-3xl" />
+            <section className="relative overflow-hidden rounded-3xl border border-border/70 bg-card p-4 shadow-xs sm:p-5">
               <div className="relative grid gap-4 sm:grid-cols-[minmax(0,1fr)_132px] sm:items-stretch">
                 <div className="flex min-w-0 flex-col justify-between gap-3">
                   <div>
