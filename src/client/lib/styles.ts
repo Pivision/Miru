@@ -15,7 +15,7 @@ export const POSTER_GRID = 'grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:g
 /** 书架网格：信息更密，lg/xl 比发现页各少一列，2xl 起对齐。 */
 export const POSTER_GRID_WIDE = cn(POSTER_GRID, 'lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6');
 
-/** 首页主栏「在看 / 待看」：间距更紧、最多 4 列，主栏 864px 仍保 4 列。 */
+/** 首页主栏「在看 / 想看」：间距更紧、最多 4 列，主栏 864px 仍保 4 列。 */
 export const POSTER_GRID_COMPACT = 'grid grid-cols-2 gap-x-3 gap-y-3 sm:grid-cols-3 lg:grid-cols-4';
 
 /** 胶囊/标签页的选中与未选中态：书架状态筛选与发现页星期标签共用。 */

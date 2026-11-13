@@ -86,7 +86,7 @@ export default function IndexRoute() {
                   empty={{ text: '还没有在看的番。', to: '/discover', link: '去发现挑一部' }}
                 />
                 <div className="pt-2">
-                  <SectionTitle size="lg">待看</SectionTitle>
+                  <SectionTitle size="lg">想看</SectionTitle>
                 </div>
                 <HomeEntryGrid
                   entries={home.planned}

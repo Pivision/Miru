@@ -29,7 +29,7 @@ import { listInviteCodesWithUses } from './invite';
 import { readSiteSettings } from './site-settings';
 import { isAdmin } from './account';
 
-/** 首页主栏每格条数：在看/待看各一行，再多该去书架。 */
+/** 首页主栏每格条数：在看/想看各一行，再多该去书架。 */
 const HOME_ROW_LIMIT = 8;
 /** 最近想法条数：再多会挤掉放送表。 */
 const HOME_THOUGHT_LIMIT = 3;

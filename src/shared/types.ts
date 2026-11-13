@@ -155,7 +155,7 @@ export interface HomeData {
   airingToday: Subject[];
   /** 在看组：按最后修改时间倒序，最多 8 部。 */
   watching: Entry[];
-  /** 待看组：按加入时间倒序，最多 8 部。 */
+  /** 想看组：按加入时间倒序，最多 8 部。 */
   planned: Entry[];
 }
 
