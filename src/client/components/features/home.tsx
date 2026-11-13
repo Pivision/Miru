@@ -59,11 +59,11 @@ export function HeroLastWatch({ spotlight }: { spotlight: Entry | null }) {
   );
 }
 
-/** Hero 空态提示：书库还没有在看记录时指去发现页。 */
+/** Hero 空态提示：书架还没有在看记录时指去发现页。 */
 export function HeroEmptyHint() {
   return (
     <p className="mt-2 text-base text-muted-foreground">
-      书库还空着，
+      书架还空着，
       <Link to="/discover" className="font-medium text-primary hover:underline">
         去发现第一部
       </Link>

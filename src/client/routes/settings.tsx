@@ -3,7 +3,6 @@ import { useAuth } from '@/lib/hooks/auth-context';
 import { useSettings } from '@/lib/hooks/query';
 import { useResetSession } from '@/lib/hooks/sign-out';
 import { PageHeader } from '@/components/layout/page-header';
-import { Card } from '@/components/ui/card';
 import { QueryBoundary } from '@/components/ui/query-boundary';
 import { ProfileForm } from '@/components/features/settings/profile-form';
 import { PasswordForm } from '@/components/features/settings/password-form';
@@ -65,10 +64,6 @@ export default function SettingsRoute() {
           </>
         )}
       </QueryBoundary>
-
-      <Card padding="md" className="text-2xs leading-relaxed text-muted-foreground shadow-none">
-        Miru 是你的私有手帐：账号、记录、想法都存在你自己部署的 Cloudflare D1 数据库里，没有第三方统计脚本。
-      </Card>
     </div>
   );
 }

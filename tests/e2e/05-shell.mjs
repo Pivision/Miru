@@ -18,12 +18,12 @@ const shellPage = await getShell(cookie);
 /* ---------------------------------------------------- 读接口与删除路径补网 */
 {
   // 删除类接口会删错行或静默 500，只断言 200 抓不到，必须复查数据。
-  // 本段依赖记录段建出的那一条，写成显式前置条件，否则报错会指向书库过滤而不是真因。
+  // 本段依赖记录段建出的那一条，写成显式前置条件，否则报错会指向书架过滤而不是真因。
   const preflight = await request('/api/library', { cookie });
   const libraryTotal = preflight.data?.data?.total ?? 0;
   const searched = await request('/api/discover?q=%E8%8A%99%E8%8E%89%E8%8E%B2', { cookie });
   if (libraryTotal === 0) {
-    skip('read API coverage', '书库为空：记录段没建出记录，本段断言无从执行');
+    skip('read API coverage', '书架为空：记录段没建出记录，本段断言无从执行');
   } else if (searched.status === 502 && searched.data?.upstream === true) {
     skip('read API coverage', '上游搜索不可用（502 upstream），本段断言无从执行');
   } else {
@@ -48,7 +48,7 @@ const shellPage = await getShell(cookie);
       `status ${calendar.status} days ${calendar.data?.data?.calendar?.length}`,
     );
 
-    // 书库：q 命中、越界与非整数页码都不能 500。
+    // 书架：q 命中、越界与非整数页码都不能 500。
     const byQuery = await request('/api/library?q=%E8%8A%99%E8%8E%89%E8%8E%B2', { cookie });
     check(
       'library search filters entries',
@@ -119,7 +119,7 @@ const shellPage = await getShell(cookie);
         counts?.completed === 0,
       `total=${counted.data?.data?.total} counts=${JSON.stringify(counts)}`,
     );
-    // 后面几段假定书库只剩芙莉莲一条，验完撤掉白箱；这条留作删除用例的标靶。
+    // 后面几段假定书架只剩芙莉莲一条，验完撤掉白箱；这条留作删除用例的标靶。
     await post(`/api/records/${extraEntry.data?.data?.entry?.id}/delete`, { cookie, json: {} });
     const remaining = (await request('/api/library', { cookie })).data?.data?.entries ?? [];
     check('second record is cleaned up again', remaining.length === 1, `entries=${remaining.length}`);
@@ -148,7 +148,7 @@ const shellPage = await getShell(cookie);
       `status ${removedThought.status}`,
     );
 
-    // 书库清空、详情页 entry 变 null、重复删除不 500。
+    // 书架清空、详情页 entry 变 null、重复删除不 500。
     const removedEntry = await post(`/api/records/${entryForDelete?.id}/delete`, { cookie, json: {} });
     const libraryAfter = await request('/api/library', { cookie });
     const detailNoEntry = await request('/api/subject/400602', { cookie });

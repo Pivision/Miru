@@ -56,7 +56,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           {children}
         </main>
         <footer className="hidden border-t border-border/60 px-4 py-4 text-2xs text-muted-foreground lg:block lg:px-8">
-          Miru · 数据来自 Bangumi，记录存在 Cloudflare D1
+          Miru · 数据来自 Bangumi
         </footer>
       </div>
       <MobileTabBar />

@@ -97,7 +97,7 @@
     cursor: pointer;
   }
 
-  /* 滚动条占位必须挂文档根元素（本站靠 html 自身滚动，挂内层容器不生效）：不预留时书库页与发现页之间正文横向跳 10px。 */
+  /* 滚动条占位必须挂文档根元素（本站靠 html 自身滚动，挂内层容器不生效）：不预留时书架页与发现页之间正文横向跳 10px。 */
   html {
     -webkit-text-size-adjust: 100%;
     scrollbar-gutter: stable;

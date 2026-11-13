@@ -69,7 +69,7 @@ export function EntryPosterCard({
   showStatus = false,
 }: {
   entry: Entry;
-  /** 封面上叠状态角标：书库按状态筛选时需要，首页不需要。 */
+  /** 封面上叠状态角标：书架按状态筛选时需要，首页不需要。 */
   showStatus?: boolean;
 }) {
   const typeLabel = entry.platform;

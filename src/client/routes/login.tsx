@@ -23,7 +23,7 @@ export default function LoginRoute() {
       description="继续记录你的番剧进度、评分和想法。"
       onSubmit={submit}
       error={error}
-      footer="登录状态保存在加密 Cookie 中，账号数据只存在你自己部署的 Cloudflare D1。"
+      footer="登录状态保存在加密 Cookie 中。"
     >
       <Field
         id="email"

@@ -8,7 +8,7 @@ import { ThemeButton } from '@/components/layout/top-bar';
 
 const NAV = [
   { to: '/', label: '首页', icon: Home, end: true },
-  { to: '/library', label: '书库', icon: Bookmark, end: false },
+  { to: '/library', label: '书架', icon: Bookmark, end: false },
   { to: '/discover', label: '发现', icon: Compass, end: false },
 ];
 

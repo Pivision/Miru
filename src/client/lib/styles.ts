@@ -9,16 +9,16 @@ export const FOCUS_RESET =
 /** 触发胶囊忙碌态的视觉禁用。用 aria-disabled 而非原生 disabled：后者在弹层关闭时收不到 Radix 归还的焦点，键盘用户会丢位置。 */
 export const BUSY_LOOK = 'aria-disabled:cursor-progress aria-disabled:opacity-60';
 
-/** 海报网格列轨道：发现页与书库共用，首页用下方的 POSTER_GRID_COMPACT。 */
+/** 海报网格列轨道：发现页与书架共用，首页用下方的 POSTER_GRID_COMPACT。 */
 export const POSTER_GRID = 'grid grid-cols-2 gap-x-3 gap-y-5 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6';
 
-/** 书库网格：信息更密，lg/xl 比发现页各少一列，2xl 起对齐。 */
+/** 书架网格：信息更密，lg/xl 比发现页各少一列，2xl 起对齐。 */
 export const POSTER_GRID_WIDE = cn(POSTER_GRID, 'lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6');
 
 /** 首页主栏「在看 / 待看」：间距更紧、最多 4 列，主栏 864px 仍保 4 列。 */
 export const POSTER_GRID_COMPACT = 'grid grid-cols-2 gap-x-3 gap-y-3 sm:grid-cols-3 lg:grid-cols-4';
 
-/** 胶囊/标签页的选中与未选中态：书库状态筛选与发现页星期标签共用。 */
+/** 胶囊/标签页的选中与未选中态：书架状态筛选与发现页星期标签共用。 */
 export const PILL_ACTIVE = 'bg-primary text-primary-foreground shadow-xs';
 export const PILL_IDLE = 'text-muted-foreground hover:bg-accent';
 

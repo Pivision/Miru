@@ -24,7 +24,7 @@ export function Notice({ code, title, detail, children }: Props) {
   );
 }
 
-/** 「回首页 / 打开书库」这对出口，路由兜底与错误边界共用。 */
+/** 「回首页 / 打开书架」这对出口，路由兜底与错误边界共用。 */
 export function NoticeLinks() {
   return (
     <>
@@ -32,7 +32,7 @@ export function NoticeLinks() {
         <Link to="/">回首页</Link>
       </Button>
       <Button asChild size="sm" variant="outline">
-        <Link to="/library">打开书库</Link>
+        <Link to="/library">打开书架</Link>
       </Button>
     </>
   );

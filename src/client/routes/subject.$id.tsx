@@ -178,7 +178,7 @@ export default function SubjectRoute() {
           <Card padding="md" className="text-2xs text-muted-foreground">
             <p className="font-medium text-foreground">条目数据</p>
             <p className="mt-1 leading-relaxed">
-              来自 Bangumi（bgm.tv），本站会缓存一段时间以减少请求。图片同样由 Bangumi 官方图床提供。
+              资料与封面来自 Bangumi
             </p>
           </Card>
         </aside>

@@ -33,7 +33,7 @@ export function readLibraryFilters(params: URLSearchParams): LibraryFilters {
   };
 }
 
-/** 呈现方式：服务端不读，单独解析；留在 shared 是因为书库页与「切换视图」链接要按同一份规则读 ?view=。 */
+/** 呈现方式：服务端不读，单独解析；留在 shared 是因为书架页与「切换视图」链接要按同一份规则读 ?view=。 */
 export function readLibraryView(params: URLSearchParams): LibraryView {
   return params.get('view') === 'list' ? 'list' : 'grid';
 }
@@ -44,7 +44,7 @@ function readWeekday(params: URLSearchParams, today: number): number {
   return Number.isInteger(raw) && raw >= 1 && raw <= 7 ? raw : today;
 }
 
-/** 发现页：搜索词与页号沿用书库的口径，多一个选中日。 */
+/** 发现页：搜索词与页号沿用书架的口径，多一个选中日。 */
 export function readDiscoverFilters(params: URLSearchParams, today: number) {
   const { q, page } = readLibraryFilters(params);
   // 只在这里 trim：空白查询会被当成有搜索词，白跑一次上游还可能 502 打挂放送表。

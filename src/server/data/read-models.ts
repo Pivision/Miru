@@ -29,7 +29,7 @@ import { listInviteCodesWithUses } from './invite';
 import { readSiteSettings } from './site-settings';
 import { isAdmin } from './account';
 
-/** 首页主栏每格条数：在看/待看各一行，再多该去书库。 */
+/** 首页主栏每格条数：在看/待看各一行，再多该去书架。 */
 const HOME_ROW_LIMIT = 8;
 /** 最近想法条数：再多会挤掉放送表。 */
 const HOME_THOUGHT_LIMIT = 3;
@@ -136,7 +136,7 @@ export async function loadLibrary(db: Db, user: SessionUser, filters: LibraryFil
   ]);
   const total = counts[filters.status];
   const pages = pageCount(total);
-  // ?page=99 这类越界页的 offset 早已越过末尾，查出来是空数组。书库有分页器，夹回最后一页再取一次；发现页不夹。
+  // ?page=99 这类越界页的 offset 早已越过末尾，查出来是空数组。书架有分页器，夹回最后一页再取一次；发现页不夹。
   const page = Math.min(filters.page, pages);
   const rows = page === filters.page ? entries : await fetchPage(page);
   return {

@@ -23,7 +23,7 @@ export function subjectPath(id: string | number): string {
 
 const PAGE_TITLES: Record<string, string> = {
   '/': '下一幕',
-  '/library': '书库',
+  '/library': '书架',
   '/discover': '发现',
   '/settings': '设置',
   [LOGIN_PATH]: '登录',

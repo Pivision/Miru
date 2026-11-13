@@ -20,7 +20,7 @@ export function useQueryHref(): QueryHref {
       const qs = next.toString();
       const query = qs ? `?${qs}` : '';
       // 传了 `to` 就必须带上它：只回 `?qs` 会被 React Router 当成相对引用，
-      // 结果是「在 /library 上搜索」原地过滤书库，而不是跳到 /discover。
+      // 结果是「在 /library 上搜索」原地过滤书架，而不是跳到 /discover。
       // 空串按「没传」处理，免得拼出一个空路径。
       return to ? `${to}${query}` : query || pathname;
     };

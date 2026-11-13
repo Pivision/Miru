@@ -47,7 +47,7 @@ export default function LibraryRoute() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="书库"
+        title="书架"
         description="所有记录都在这里：想看、在看、看过、搁置与抛弃。点封面回到详情页继续写。"
         actions={
           <Button asChild variant="outline" size="sm">
@@ -86,7 +86,7 @@ export default function LibraryRoute() {
               onChange={(event) => setTerm(event.target.value)}
               placeholder="搜索标题…"
               className="h-9 pl-8 text-xs"
-              aria-label="搜索书库"
+              aria-label="搜索书架"
             />
           </form>
 
@@ -131,13 +131,13 @@ export default function LibraryRoute() {
         isError={isError}
         error={error}
         onRetry={() => void refetch()}
-        errorTitle="书库暂时打不开"
+        errorTitle="书架暂时打不开"
         errorHint="可能是网络断了，也可能是登录状态失效了。"
         skeleton={
           view === 'list' ? (
             <RowListSkeleton />
           ) : (
-            // 书库网格列数比发现页多一档（lg 4 列、2xl 6 列），覆盖默认轨道。
+            // 书架网格列数比发现页多一档（lg 4 列、2xl 6 列），覆盖默认轨道。
             <PosterGridSkeleton className={POSTER_GRID_WIDE} />
           )
         }
