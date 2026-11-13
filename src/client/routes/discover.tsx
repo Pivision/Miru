@@ -23,7 +23,7 @@ import { SearchSuggestions } from '@/components/features/entry/search-suggestion
 /** 放送表的七个标签。?? 挡不住空数组：上游挂掉时 calendar 是 []，必须用 length 判断，否则标签栏空掉连「点周几」都做不到。 */
 function weekTabs(calendar: CalendarDay[] | undefined): CalendarDay[] {
   if (calendar?.length) return calendar;
-  return Array.from({ length: 7 }, (_, i) => ({ weekday: i + 1, label: weekdayLabel(i + 1), items: [] }));
+  return Array.from({ length: 7 }, (_, i) => ({ weekday: i + 1, items: [] }));
 }
 
 export default function DiscoverRoute() {
@@ -87,7 +87,7 @@ export default function DiscoverRoute() {
                 item.weekday === day ? PILL_ACTIVE : PILL_IDLE,
               )}
             >
-              周{item.label}
+              周{weekdayLabel(item.weekday)}
             </Link>
           ))}
         </div>
@@ -115,7 +115,7 @@ export default function DiscoverRoute() {
                 ) : (
                   <h2 className="inline-flex items-center gap-2 text-lg font-medium">
                     <CalendarDays className="size-4 text-primary" />
-                    周{activeDay?.label ?? weekdayLabel(day)} 放送
+                    周{weekdayLabel(day)} 放送
                     <span className="text-xs font-normal text-muted-foreground">{items.length} 部</span>
                   </h2>
                 )}

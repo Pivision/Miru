@@ -123,10 +123,9 @@ export function mirrorImages(env: Env, subject: Subject): Subject {
 export function normalizeCalendar(raw: unknown): CalendarDay[] {
   if (!Array.isArray(raw)) return [];
   return raw.map((day) => {
-    const rec = day as { weekday?: { id?: number; cn?: string }; items?: Record<string, unknown>[] };
+    const rec = day as { weekday?: { id?: number }; items?: Record<string, unknown>[] };
     return {
       weekday: Number(rec.weekday?.id ?? 0) || 0,
-      label: String(rec.weekday?.cn ?? ''),
       items: (rec.items ?? []).map((item) => normalizeSubject(item)),
     };
   });

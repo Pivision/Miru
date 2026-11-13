@@ -112,7 +112,6 @@ export interface Episode {
 
 export interface CalendarDay {
   weekday: number;
-  label: string;
   items: Subject[];
 }
 
@@ -125,7 +124,7 @@ export interface Stats {
   avgRating: number;
 }
 
-/** 书库排序方式，文案在 @shared/library-filters。 */
+/** 书架排序方式，文案在 @shared/library-filters。 */
 export type LibrarySort = 'updated' | 'rating' | 'title' | 'air_date' | 'created';
 
 export interface LibraryFilters {
@@ -135,7 +134,7 @@ export interface LibraryFilters {
   page: number;
 }
 
-/** 书库呈现方式：服务端不读，不放进 LibraryFilters。 */
+/** 书架呈现方式：服务端不读，不放进 LibraryFilters。 */
 export type LibraryView = 'grid' | 'list';
 
 export interface LibraryData {
